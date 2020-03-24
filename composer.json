@@ -1,0 +1,56 @@
+{
+    "name": "coservas/simple-rest-api",
+    "type": "project",
+    "description": "Simple REST API",
+    "license": "MIT",
+    "config": {
+        "platform": {
+            "php": "7.4"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "laminas/laminas-diactoros": "^2.2"
+    },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpstan/phpstan": "^0.12.0",
+        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "scripts": {
+        "test": "phpunit --colors=always",
+        "analyse": [
+            "@phpcs",
+            "@phpstan"
+        ],
+        "fix": [
+            "@php-cs-fixer",
+            "@phpcbf"
+        ],
+        "phpcs": "./vendor/bin/phpcs",
+        "phpcbf": "./vendor/bin/phpcbf",
+        "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --show-progress=dots",
+        "phpstan": "./vendor/bin/phpstan analyse --paths-file=./phpstan.dist --ansi --level=max",
+        "post-install-cmd": "./vendor/bin/cghooks add --ignore-lock",
+        "post-update-cmd": "./vendor/bin/cghooks update"
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "composer phpcs"
+            ]
+        }
+    }
+}
