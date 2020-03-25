@@ -21,10 +21,12 @@
     },
     "require": {
         "dasprid/container-interop-doctrine": "^1.1",
+        "fzaninotto/faker": "^1.9",
         "laminas/laminas-diactoros": "^2.2",
         "laminas/laminas-httphandlerrunner": "^1.1",
         "laminas/laminas-stratigility": "^3.2",
         "league/container": "^3.3",
+        "mbezhanov/faker-provider-collection": "^1.2",
         "middlewares/aura-router": "^2.0",
         "middlewares/request-handler": "^2.0",
         "vlucas/phpdotenv": "^4.1"
