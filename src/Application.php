@@ -164,7 +164,7 @@ final class Application implements MiddlewarePipeInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler = null): ResponseInterface
     {
-        return $this->pipeline->process($request, $handler ?? $this->container->get(NotFoundAction::class));
+        return $this->pipeline->process($request, $handler);
     }
 
     public function pipe(MiddlewareInterface $middleware): void
