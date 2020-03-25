@@ -20,7 +20,14 @@
         }
     },
     "require": {
-        "laminas/laminas-diactoros": "^2.2"
+        "dasprid/container-interop-doctrine": "^1.1",
+        "laminas/laminas-diactoros": "^2.2",
+        "laminas/laminas-httphandlerrunner": "^1.1",
+        "laminas/laminas-stratigility": "^3.2",
+        "league/container": "^3.3",
+        "middlewares/aura-router": "^2.0",
+        "middlewares/request-handler": "^2.0",
+        "vlucas/phpdotenv": "^4.1"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.8",
