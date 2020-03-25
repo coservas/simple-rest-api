@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Action\NotFoundAction;
 use Aura\Router\Generator;
 use Aura\Router\Map;
 use Aura\Router\Route;
@@ -164,7 +165,7 @@ final class Application implements MiddlewarePipeInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler = null): ResponseInterface
     {
-        return $this->pipeline->process($request, $handler);
+        return $this->pipeline->process($request, $handler ?? $this->container->get(NotFoundAction::class));
     }
 
     public function pipe(MiddlewareInterface $middleware): void
