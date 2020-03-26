@@ -9,6 +9,12 @@ return [
     ],
     [
         'methods' => ['get'],
+        'name' => 'product-list',
+        'path' => '/products',
+        'handler' => App\Action\Product\ListAction::class,
+    ],
+    [
+        'methods' => ['get'],
         'name' => 'order-list',
         'path' => '/orders',
         'handler' => App\Action\Order\ListAction::class,
@@ -24,11 +30,5 @@ return [
         'name' => 'order-pay',
         'path' => '/orders/{id}/pay',
         'handler' => App\Action\Order\PayAction::class,
-    ],
-    [
-        'methods' => ['get'],
-        'name' => 'product-list',
-        'path' => '/products',
-        'handler' => App\Action\Product\ListAction::class,
     ],
 ];
