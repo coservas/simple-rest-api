@@ -5,24 +5,24 @@ declare(strict_types=1);
 namespace App\Action\Product;
 
 use App\Entity\Product;
-use App\Service\ProductService;
+use Doctrine\ORM\EntityManagerInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class GenerateStartDatasetAction implements RequestHandlerInterface
+class ListAction implements RequestHandlerInterface
 {
-    private ProductService $productService;
+    private EntityManagerInterface $em;
 
-    public function __construct(ProductService $productService)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->productService = $productService;
+        $this->em = $em;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $products = $this->productService->generateStartDatasetAndGet();
+        $products = $this->em->getRepository(Product::class)->findAll();
 
         return new JsonResponse(array_map(fn (Product $product): array => [
             'id' => $product->getId(),

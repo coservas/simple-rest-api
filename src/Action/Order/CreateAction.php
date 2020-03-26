@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Action\Order;
 
+use App\Exception\BadRequestException;
 use App\Service\OrderService;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -24,12 +25,12 @@ class CreateAction implements RequestHandlerInterface
         try {
             $body = $request->getBody()->getContents();
             if (!$body) {
-                throw new \Exception('Empty request');
+                throw new BadRequestException('Empty request');
             }
 
             $params = json_decode($body, true);
             if (null === $params || !isset($params['products'])) {
-                throw new \Exception("Params 'products' not found");
+                throw new BadRequestException('Params "products" not found');
             }
 
             $order = $this->orderService->createOrderAndGet($params['products']);
@@ -37,9 +38,12 @@ class CreateAction implements RequestHandlerInterface
             return new JsonResponse([
                 'order_number' => $order->getId()
             ]);
+        } catch (BadRequestException $e) {
+            return new JsonResponse([
+                'message' => $e->getMessage()
+            ], 400);
         } catch (\Exception $e) {
             return new JsonResponse([
-                'status' => 'error',
                 'message' => $e->getMessage()
             ], 500);
         }
