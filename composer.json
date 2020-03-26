@@ -22,6 +22,7 @@
     "require": {
         "dasprid/container-interop-doctrine": "^1.1",
         "fzaninotto/faker": "^1.9",
+        "guzzlehttp/guzzle": "^6.5",
         "laminas/laminas-diactoros": "^2.2",
         "laminas/laminas-httphandlerrunner": "^1.1",
         "laminas/laminas-stratigility": "^3.2",
