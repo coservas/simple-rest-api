@@ -30,7 +30,9 @@ class OrderService
             $total += $product->getPrice();
         }
 
-        $order = (new Order())->setTotal($total);
+        $order = (new Order())
+            ->setTotal($total)
+            ->setProducts($productIds);
 
         $this->em->persist($order);
         $this->em->flush();

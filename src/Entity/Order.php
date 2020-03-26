@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="orders")
- * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Entity()
  */
 class Order
 {
@@ -31,6 +31,11 @@ class Order
      * @ORM\Column(type="integer")
      */
     private int $total = 0;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private array $products = [];
 
     public function getId(): int
     {
@@ -57,6 +62,18 @@ class Order
     public function setTotal(int $total): Order
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getProducts(): array
+    {
+        return $this->products;
+    }
+
+    public function setProducts(array $products): Order
+    {
+        $this->products = $products;
 
         return $this;
     }
