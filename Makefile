@@ -9,6 +9,9 @@ clean: confirm ##@data Stop containers and removing containers, networks, volume
 	@$(DC) down
 
 install: build start composer-install create-db-schema ##@data Install application
+
+phpcs:
+	@$(DC_EXEC) -T fpm composer phpcs
 ### data ###
 
 

@@ -59,7 +59,7 @@
     "extra": {
         "hooks": {
             "pre-commit": [
-                "composer phpcs"
+                "make phpcs"
             ]
         }
     }
