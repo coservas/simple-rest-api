@@ -7,6 +7,8 @@ build: ##@data Build all or c=<name> services
 
 clean: confirm ##@data Stop containers and removing containers, networks, volumes, and images
 	@$(DC) down
+
+install: build start composer-install create-db-scheme ##@data Install application
 ### data ###
 
 
@@ -25,7 +27,7 @@ restart: ##@running Restart all or c=<name> containers
 
 ### shell ###
 db: ##@console Database console
-	@$(DC_EXEC) db mysql -u $(DB_USER) -p$(DB_PASS) $(DB_DATABASE)
+	@$(DC_EXEC) db psql $(DB_NAME) -U $(DB_USER)
 
 bash: bash-fpm ##@console Alias bash-fpm
 
@@ -49,3 +51,11 @@ status: ##@info Show status of containers
 logs: ##@info Show all or c=<name> logs of containers
 	@$(DC) logs -f $(c)
 ### information ###
+
+### install ###
+composer-install: #@install Install composer packages
+	@$(DC_EXEC) fpm composer install
+
+create-db-scheme: #@install Create DB scheme
+	@$(DC_EXEC) fpm vendor/bin/doctrine orm:schema-tool:create
+### install ###
