@@ -11,7 +11,7 @@ services:
             - ./../public:/var/app/public
 
     fpm:
-        build: fpm
+        image: coservas/simple-rest-api-fpm:latest
         restart: always
         volumes:
             - ./..:/var/app
