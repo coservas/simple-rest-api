@@ -41,8 +41,9 @@ class PayAction implements RequestHandlerInterface
                 throw new BadRequestException('Param "total" not found');
             }
 
+            /** @var Order|null $order */
             $order = $this->em->getRepository(Order::class)->find($orderId);
-            if (!$order) {
+            if (null === $order) {
                 throw new OrderNotFoundException(sprintf('Order with id=%d not found', $orderId));
             }
 

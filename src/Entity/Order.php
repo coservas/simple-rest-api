@@ -33,6 +33,7 @@ class Order
     private int $total = 0;
 
     /**
+     * @var array<int>
      * @ORM\Column(type="array")
      */
     private array $products = [];
@@ -66,11 +67,19 @@ class Order
         return $this;
     }
 
+    /**
+     * @return array<int>
+     */
     public function getProducts(): array
     {
         return $this->products;
     }
 
+    /**
+     * @param array<int> $products
+     *
+     * @return Order
+     */
     public function setProducts(array $products): Order
     {
         $this->products = $products;

@@ -22,7 +22,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class Application implements MiddlewarePipeInterface
 {
-    private ContainerInterface $container;
+    private Container $container;
     private MiddlewarePipeInterface $pipeline;
     private RouterContainer $router;
 
@@ -130,6 +130,14 @@ final class Application implements MiddlewarePipeInterface
         }
     }
 
+    /**
+     * @param Map<Route> $map
+     * @param array<string, array> $route
+     *
+     * @throws Exception
+     *
+     * @return Map<Route>
+     */
     private function addRoute(Map $map, array $route): Map
     {
         $methods = $route['methods'];

@@ -25,6 +25,7 @@ class ProductService
      */
     public function generateStartDatasetAndGet(): array
     {
+        /** @var Product[] $products */
         $products = $this->em->getRepository(Product::class)->findAll();
         if ($products) {
             return $products;

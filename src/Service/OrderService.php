@@ -17,13 +17,20 @@ class OrderService
         $this->em = $em;
     }
 
+    /**
+     * @param array<int> $productIds
+     *
+     * @throws \Exception
+     *
+     * @return Order
+     */
     public function createOrderAndGet(array $productIds): Order
     {
         $total = 0;
         foreach ($productIds as $productId) {
-            /** @var Product $product */
+            /** @var Product|null $product */
             $product = $this->em->getRepository(Product::class)->find($productId);
-            if (!$product) {
+            if (null === $product) {
                 throw new \Exception(sprintf('Product with id=%d not found', $productId));
             }
 
