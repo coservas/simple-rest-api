@@ -8,7 +8,7 @@ build: ##@data Build all or c=<name> services
 clean: confirm ##@data Stop containers and removing containers, networks, volumes, and images
 	@$(DC) down
 
-install: build start composer-install create-db-scheme ##@data Install application
+install: build start composer-install create-db-schema ##@data Install application
 ### data ###
 
 
@@ -56,6 +56,9 @@ logs: ##@info Show all or c=<name> logs of containers
 composer-install: #@install Install composer packages
 	@$(DC_EXEC) fpm composer install
 
-create-db-scheme: #@install Create DB scheme
+create-db-schema: #@install Create DB scheme
 	@$(DC_EXEC) fpm vendor/bin/doctrine orm:schema-tool:create
+
+update-db-schema: #@install Update DB scheme
+	@$(DC_EXEC) fpm vendor/bin/doctrine orm:schema-tool:update --force
 ### install ###

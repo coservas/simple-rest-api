@@ -9,6 +9,12 @@ make install
 #### Методы:
 
 ```
+/v1/generate-start-dataset
+    POST: Генерация стартового набора товаров
+
+/v1/products
+    GET: Список товаров
+
 /v1/orders
     GET: Список заказов
     POST: Создание заказа
@@ -17,10 +23,4 @@ make install
 /v1/orders/{id}/pay
     POST: Оплата заказа
         {"total": "1000"}
-
-/v1/products
-    GET: Список товаров
-
-/v1/generate-start-dataset
-    POST: Генерация стартового набора товаров
 ```
